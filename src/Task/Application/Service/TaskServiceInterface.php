@@ -1,8 +1,8 @@
 <?php
 
-namespace Task\Infrastructure\Service;
+namespace App\Task\Infrastructure\Service;
 
-use Task\Domain\Entity\Task\Task;
+use App\Task\Domain\Entity\Task\Task;
 
 interface TaskServiceInterface
 {

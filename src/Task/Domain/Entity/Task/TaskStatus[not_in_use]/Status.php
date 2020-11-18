@@ -1,6 +1,6 @@
 <?php
 
-namespace Task\Domain\Entity\Task\TaskStatus;
+namespace App\Task\Domain\Entity\Task\TaskStatus;
 
 abstract class Status
 {
@@ -10,6 +10,7 @@ abstract class Status
 //        StatusDone::class,
 //    ];
 
+    protected $value = 'status';
     protected $next = [];
 
 //    public function __construct(self $status)
@@ -29,5 +30,10 @@ abstract class Status
     public function canBeChangedTo(self $status): bool
     {
         return in_array(get_class($status), $this->next, true);
+    }
+
+    public function __toString(): string
+    {
+        return $this->value;
     }
 }

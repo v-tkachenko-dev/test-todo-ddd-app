@@ -1,1 +1,8 @@
 .idea/
+.vscode/
+/coverage/
+/vendor/
+/logs/app.log
+!/logs/README.md
+.phpunit.result.cache
+composer.phar

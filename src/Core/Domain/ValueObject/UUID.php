@@ -1,10 +1,10 @@
 <?php
 
-namespace Core\ValueObject;
+namespace App\Core\Domain\ValueObject;
 
-use Core\Exception\EmptyIdException;
+use App\Core\Exception\EmptyIdException;
 
-class UUID implements UUIDInterface
+class UUID
 {
     /** @var string */
     protected $value;
@@ -26,5 +26,10 @@ class UUID implements UUIDInterface
         if (empty($id)) {
             throw new EmptyIdException;
         }
+    }
+
+    public function __toString(): string
+    {
+        return $this->value;
     }
 }

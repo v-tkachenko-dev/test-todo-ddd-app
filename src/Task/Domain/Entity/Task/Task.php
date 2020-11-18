@@ -1,9 +1,8 @@
 <?php
 
-namespace Task\Domain\Entity\Task;
+namespace App\Task\Domain\Entity\Task;
 
 use Core\ValueObject\DateTime;
-use Task\Domain\Entity\Task\TaskStatus\Status;
 
 class Task
 {
@@ -13,7 +12,7 @@ class Task
     /** @var TaskSummary */
     private $summary;
 
-    /** @var Status */
+    /** @var TaskStatus */
     private $status;
 
     /** @var DateTime */
@@ -25,7 +24,7 @@ class Task
     public function __construct(
         TaskId $id,
         TaskSummary $summary,
-        Status $status
+        TaskStatus $status
     ) {
         $this->id = $id;
         $this->summary = $summary;
@@ -47,12 +46,12 @@ class Task
         $this->summary = $summary;
     }
 
-    public function getStatus(): Status
+    public function getStatus(): TaskStatus
     {
         return $this->status;
     }
 
-    public function setStatus(Status $status): void
+    public function setStatus(TaskStatus $status): void
     {
         $this->status = $status;
     }

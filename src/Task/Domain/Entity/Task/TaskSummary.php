@@ -1,8 +1,8 @@
 <?php
 
-namespace Task\Domain\Entity\Task;
+namespace App\Task\Domain\Entity\Task;
 
-use Task\Domain\Exception\TaskSummaryIsNotValid;
+use App\Task\Domain\Exception\TaskSummaryIsNotValid;
 
 class TaskSummary
 {
@@ -22,5 +22,10 @@ class TaskSummary
         if (strlen($summary) < self::MIN_LENGTH) {
             throw new TaskSummaryIsNotValid;
         }
+    }
+
+    public function __toString(): string
+    {
+        return $this->summary;
     }
 }

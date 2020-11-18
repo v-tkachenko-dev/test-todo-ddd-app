@@ -1,12 +1,12 @@
 <?php
 
-namespace Task\Infrastructure\Service;
+namespace App\Task\Infrastructure\Service;
 
-use Task\Domain\Entity\Task\Task;
-use Task\Domain\Entity\Task\TaskId;
-use Task\Domain\Entity\Task\TaskStatus\StatusToDo;
-use Task\Domain\Entity\Task\TaskSummary;
-use Task\Domain\Repository\TaskRepositoryInterface;
+use App\Task\Domain\Entity\Task\Task;
+use App\Task\Domain\Entity\Task\TaskId;
+use App\Task\Domain\Entity\Task\TaskStatus;
+use App\Task\Domain\Entity\Task\TaskSummary;
+use App\Task\Domain\Repository\TaskRepositoryInterface;
 
 class TaskService implements TaskServiceInterface
 {
@@ -23,7 +23,7 @@ class TaskService implements TaskServiceInterface
         $task = new Task(
             new TaskId,
             new TaskSummary('new task'),
-            new StatusToDo()
+            new TaskStatus(TaskStatus::TYPE_TODO)
         );
 
         $this->taskRepository->create($task);

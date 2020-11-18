@@ -1,8 +1,8 @@
 <?php
 
-namespace Task\Domain\Exception;
+namespace App\Task\Domain\Exception;
 
-use Core\Exception\DomainLayerException;
+use App\Core\Exception\DomainLayerException;
 
 class TaskStatusIsNotValid extends DomainLayerException
 {

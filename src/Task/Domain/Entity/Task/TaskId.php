@@ -1,16 +1,16 @@
 <?php
 
-namespace Task\Domain\Entity\Task;
+namespace App\Task\Domain\Entity\Task;
 
-use Core\ValueObject\UUID;
+use App\Core\Domain\ValueObject\UUID;
 
 class TaskId extends UUID
 {
     private $id;
 
-    public function __construct()
+    public function __construct(string $id)
     {
-        $this->id = parent::generate();
+        $this->id = $id;
 
         parent::__construct($this->id);
     }

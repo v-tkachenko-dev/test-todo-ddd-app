@@ -1,11 +1,11 @@
 <?php
 
-namespace Task\Infrastructure\Persistence;
+namespace App\Task\Infrastructure\Persistence;
 
-use Task\Domain\Entity\Task\Task;
-use Task\Domain\Repository\TaskRepositoryInterface;
+use App\Task\Domain\Entity\Task\Task;
+use App\Task\Domain\Repository\TaskRepositoryInterface;
 
-class SQLiteTaskRepository implements TaskRepositoryInterface
+class SQLiteTaskRepository // implements TaskRepositoryInterface
 {
     public function create(Task $task): void
     {
