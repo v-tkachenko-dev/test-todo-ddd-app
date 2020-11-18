@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 use App\Task\Application\Actions\{
     ListTasksAction,
-    ViewTaskAction
+    ViewTaskAction,
+    CreateTaskAction,
+    UpdateTaskAction,
+    DeleteTaskAction
 };
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -25,8 +28,8 @@ return function (App $app) {
     $app->group('/tasks', function (Group $group) {
         $group->get('', ListTasksAction::class);
         $group->get('/{id}', ViewTaskAction::class);
-//        $group->post('/', ViewUserAction::class);
-//        $group->put('/{id}', ViewUserAction::class);
-//        $group->delete('/{id}', ViewUserAction::class);
+        $group->post('', CreateTaskAction::class);
+        $group->put('/{id}', UpdateTaskAction::class);
+        $group->delete('/{id}', DeleteTaskAction::class);
     });
 };

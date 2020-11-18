@@ -4,14 +4,14 @@ declare(strict_types=1);
 namespace App\Task\Application\Actions;
 
 use App\Core\Application\Actions\Action;
-use App\Task\Domain\Repository\TaskRepositoryInterface;
+use App\Task\Application\Service\TaskServiceInterface;
 
 abstract class TaskAction extends Action
 {
-    protected $taskRepository;
+    protected $taskService;
 
-    public function __construct(TaskRepositoryInterface $taskRepository)
+    public function __construct(TaskServiceInterface $taskService)
     {
-        $this->taskRepository = $taskRepository;
+        $this->taskService = $taskService;
     }
 }

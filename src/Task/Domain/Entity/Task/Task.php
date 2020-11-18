@@ -2,8 +2,6 @@
 
 namespace App\Task\Domain\Entity\Task;
 
-use Core\ValueObject\DateTime;
-
 class Task
 {
     /** @var TaskId */
@@ -14,12 +12,6 @@ class Task
 
     /** @var TaskStatus */
     private $status;
-
-    /** @var DateTime */
-    private $createdAt;
-
-    /** @var DateTime */
-    private $updatedAt;
 
     public function __construct(
         TaskId $id,
@@ -41,9 +33,11 @@ class Task
         return $this->summary;
     }
 
-    public function setSummary(TaskSummary $summary): void
+    public function setSummary(TaskSummary $summary): self
     {
         $this->summary = $summary;
+
+        return $this;
     }
 
     public function getStatus(): TaskStatus
@@ -51,18 +45,10 @@ class Task
         return $this->status;
     }
 
-    public function setStatus(TaskStatus $status): void
+    public function setStatus(TaskStatus $status): self
     {
         $this->status = $status;
-    }
 
-    public function getCreatedAt(): DateTime
-    {
-        return $this->createdAt;
-    }
-
-    public function getUpdatedAt(): DateTime
-    {
-        return $this->updatedAt;
+        return $this;
     }
 }

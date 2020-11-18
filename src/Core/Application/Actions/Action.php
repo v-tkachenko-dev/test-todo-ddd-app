@@ -3,10 +3,12 @@ declare(strict_types=1);
 
 namespace App\Core\Application\Actions;
 
+use App\Core\Exception\DomainLayerException;
 use App\Core\Exception\NotFoundException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpException;
 use Slim\Exception\HttpNotFoundException;
 
 abstract class Action
@@ -32,7 +34,7 @@ abstract class Action
      * @param array    $args
      * @return Response
      * @throws HttpNotFoundException
-     * @throws NotFoundException
+     * @throws HttpException
      */
     public function __invoke(Request $request, Response $response, $args): Response
     {
@@ -44,6 +46,8 @@ abstract class Action
             return $this->action();
         } catch (NotFoundException $e) {
             throw new HttpNotFoundException($this->request, $e->getMessage());
+        } catch (DomainLayerException $e) {
+            throw new HttpException($this->request,$e->getMessage(), $e->getCode());
         }
     }
 

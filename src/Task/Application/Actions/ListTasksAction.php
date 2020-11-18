@@ -10,7 +10,7 @@ class ListTasksAction extends TaskAction
 {
     protected function action(): Response
     {
-        $tasks = $this->taskRepository->getAll();
+        $tasks = $this->taskService->getAll();
 
         return $this->respondWithData(
             TaskCollectionMapper::toString($tasks)

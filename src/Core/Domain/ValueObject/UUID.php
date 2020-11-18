@@ -21,15 +21,15 @@ class UUID
         return new self(uniqid());
     }
 
+    public function __toString(): string
+    {
+        return $this->value;
+    }
+
     private function validateId(string $id): void
     {
         if (empty($id)) {
             throw new EmptyIdException;
         }
-    }
-
-    public function __toString(): string
-    {
-        return $this->value;
     }
 }

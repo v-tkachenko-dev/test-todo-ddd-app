@@ -3,17 +3,16 @@ declare(strict_types=1);
 
 namespace App\Task\Application\Actions;
 
-use App\Core\Domain\ValueObject\UUID;
 use App\Task\Application\DataMapper\TaskMapper;
 use Psr\Http\Message\ResponseInterface as Response;
 
-class ViewTaskAction extends TaskAction
+class CreateTaskAction extends TaskAction
 {
     protected function action(): Response
     {
-        $id = new UUID((string) $this->resolveArg('id'));
+        $data = json_decode($this->request->getBody()->getContents(), true);
 
-        $task = $this->taskService->getById($id);
+        $task = $this->taskService->create($data);
 
         return $this->respondWithData(TaskMapper::toString($task));
     }

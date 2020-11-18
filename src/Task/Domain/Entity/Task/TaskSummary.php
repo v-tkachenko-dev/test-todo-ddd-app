@@ -8,13 +8,18 @@ class TaskSummary
 {
     public const MIN_LENGTH = 4;
 
-    private $summary;
+    private $value;
 
     public function __construct(string $summary)
     {
         $this->validateSummary($summary);
 
-        $this->summary = $summary;
+        $this->value = $summary;
+    }
+
+    public function __toString(): string
+    {
+        return $this->value;
     }
 
     private function validateSummary(string $summary): void
@@ -22,10 +27,5 @@ class TaskSummary
         if (strlen($summary) < self::MIN_LENGTH) {
             throw new TaskSummaryIsNotValid;
         }
-    }
-
-    public function __toString(): string
-    {
-        return $this->summary;
     }
 }

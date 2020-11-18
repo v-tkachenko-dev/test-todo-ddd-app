@@ -2,9 +2,9 @@
 
 namespace App\Task\Domain\Exception;
 
-use App\Core\Exception\DomainLayerException;
+use App\Core\Exception\UnprocessableEntityException;
 
-class TaskSummaryIsNotValid extends DomainLayerException
+class TaskSummaryIsNotValid extends UnprocessableEntityException
 {
     protected $message = 'Task summary is not valid';
 }

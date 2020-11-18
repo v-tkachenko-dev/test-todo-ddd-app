@@ -27,15 +27,15 @@ class TaskStatus
         $this->value = $status;
     }
 
+    public function __toString(): string
+    {
+        return $this->value;
+    }
+
     private function validateStatus(string $status): void
     {
         if (! in_array($status, self::TYPES)) {
             throw new TaskStatusIsNotValid;
         }
-    }
-
-    public function __toString(): string
-    {
-        return $this->value;
     }
 }

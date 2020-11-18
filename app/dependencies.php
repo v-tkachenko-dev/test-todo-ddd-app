@@ -1,6 +1,11 @@
 <?php
 declare(strict_types=1);
 
+use App\Task\Application\Service\{
+    TaskServiceInterface,
+    TaskService
+};
+
 use DI\ContainerBuilder;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -23,6 +28,10 @@ return function (ContainerBuilder $containerBuilder) {
             $logger->pushHandler($handler);
 
             return $logger;
+        },
+
+        TaskServiceInterface::class => function(ContainerInterface $c) {
+            return $c->get(TaskService::class);
         },
     ]);
 };
