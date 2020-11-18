@@ -1,4 +1,4 @@
-Basic DDD todo application
+Basic todo DDD applicaiton
 
 - PHP 7.2
 - Slim Framework 4
