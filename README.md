@@ -14,6 +14,7 @@ or
 
 > php -S localhost:8080 -t public
 
+or via docker 
 
 Postman collection: _https://www.getpostman.com/collections/2ccfd301b7b24a4851b2_
 
