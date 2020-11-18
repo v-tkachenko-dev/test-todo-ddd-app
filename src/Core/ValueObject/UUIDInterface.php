@@ -2,7 +2,7 @@
 
 namespace Core\ValueObject;
 
-interface UuidInterface
+interface UUIDInterface
 {
 
 }
