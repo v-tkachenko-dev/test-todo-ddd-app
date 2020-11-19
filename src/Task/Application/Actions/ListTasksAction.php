@@ -13,7 +13,7 @@ class ListTasksAction extends TaskAction
         $tasks = $this->taskService->getAll();
 
         return $this->respondWithData(
-            TaskCollectionMapper::toString($tasks)
+            TaskCollectionMapper::toArray($tasks)
         );
     }
 }

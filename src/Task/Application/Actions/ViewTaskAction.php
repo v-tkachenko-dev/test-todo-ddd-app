@@ -15,6 +15,6 @@ class ViewTaskAction extends TaskAction
 
         $task = $this->taskService->getById($id);
 
-        return $this->respondWithData(TaskMapper::toString($task));
+        return $this->respondWithData(TaskMapper::toArray($task));
     }
 }

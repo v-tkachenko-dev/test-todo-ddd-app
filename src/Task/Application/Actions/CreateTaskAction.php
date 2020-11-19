@@ -14,6 +14,6 @@ class CreateTaskAction extends TaskAction
 
         $task = $this->taskService->create($data);
 
-        return $this->respondWithData(TaskMapper::toString($task));
+        return $this->respondWithData(TaskMapper::toArray($task));
     }
 }

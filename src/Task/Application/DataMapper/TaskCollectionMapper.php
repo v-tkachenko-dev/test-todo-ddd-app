@@ -23,9 +23,9 @@ class TaskCollectionMapper
 
     /**
      * @param Task[]|array $collection
-     * @return string
+     * @return array
      */
-    public static function toString(array $collection): string
+    public static function toArray(array $collection): array
     {
         $tasks = [];
 
@@ -33,6 +33,15 @@ class TaskCollectionMapper
             $tasks[] = TaskMapper::toArray($raw);
         }
 
-        return json_encode($tasks);
+        return $tasks;
+    }
+
+    /**
+     * @param Task[]|array $collection
+     * @return string
+     */
+    public static function toString(array $collection): string
+    {
+        return json_encode(self::toArray($collection));
     }
 }
