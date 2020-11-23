@@ -16,6 +16,8 @@ class UpdateTaskAction extends TaskAction
 
         $task = $this->taskService->update($id, $data);
 
-        return $this->respondWithData(TaskMapper::toArray($task));
+        return $this->respondWithData(
+            TaskMapper::toRaw($task)
+        );
     }
 }

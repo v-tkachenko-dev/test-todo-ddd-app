@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Task\Application\Actions;
 
-use App\Task\Application\DataMapper\TaskCollectionMapper;
+use App\Task\Application\DataMapper\TaskMapper;
 use Psr\Http\Message\ResponseInterface as Response;
 
 class ListTasksAction extends TaskAction
@@ -13,7 +13,7 @@ class ListTasksAction extends TaskAction
         $tasks = $this->taskService->getAll();
 
         return $this->respondWithData(
-            TaskCollectionMapper::toArray($tasks)
+            TaskMapper::toRawCollection($tasks)
         );
     }
 }

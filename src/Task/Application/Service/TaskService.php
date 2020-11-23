@@ -47,6 +47,8 @@ class TaskService implements TaskServiceInterface
 
         $this->taskRepository->create($task);
 
+        $task = $this->getById($task->getId());
+
         return $task;
     }
 

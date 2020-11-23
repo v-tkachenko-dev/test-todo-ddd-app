@@ -47,7 +47,7 @@ abstract class Action
         } catch (NotFoundException $e) {
             throw new HttpNotFoundException($this->request, $e->getMessage());
         } catch (DomainLayerException $e) {
-            throw new HttpException($this->request,$e->getMessage(), $e->getCode());
+            throw new HttpException($this->request, $e->getMessage(), $e->getCode());
         }
     }
 

@@ -2,13 +2,9 @@
 
 namespace App\Task\Infrastructure\Persistence;
 
-use App\Task\Application\DataMapper\TaskCollectionMapper;
-use App\Task\Application\DataMapper\TaskMapper;
-use App\Task\Domain\Entity\Task\Task;
-use App\Task\Domain\Repository\TaskRepositoryInterface;
-use App\Core\Domain\ValueObject\UUID;
+use App\Core\Infrastructure\Persistence\StorageInterface;
 
-class InMemoryTaskRepository implements TaskRepositoryInterface
+class TaskInMemoryStorage implements StorageInterface
 {
     private $tasks = [];
 
@@ -45,38 +41,38 @@ class InMemoryTaskRepository implements TaskRepositoryInterface
 
     public function getAll(): array
     {
-        return TaskCollectionMapper::fromRaw($this->tasks);
+        return $this->tasks;
     }
 
-    public function getById(UUID $id): ?Task
+    public function getById(string $id): ?array
     {
         $index = $this->getIndex($id);
         if (! $index) {
             return null;
         }
 
-        return TaskMapper::fromRaw($this->tasks[$index]);
+        return $this->tasks[$index];
     }
 
-    public function create(Task $task): void
+    public function create(array $task): void
     {
         $this->tasks[] = $task;
     }
 
-    public function update(Task $task): void
+    public function update(string $id, array $data): void
     {
-        $index = $this->getIndex($task->getId());
+        $index = $this->getIndex($id);
         if (! $index) {
             return;
         }
 
-        $this->tasks[$index]['summary'] = $task->getSummary();
-        $this->tasks[$index]['status'] = $task->getStatus();
+        $this->tasks[$index]['summary'] = $data['summary'];
+        $this->tasks[$index]['status'] = $data['status'];
     }
 
-    public function delete(Task $task): void
+    public function deleteById(string $id): void
     {
-        $index = $this->getIndex($task->getId());
+        $index = $this->getIndex($id);
         if (! $index) {
             return;
         }
@@ -84,8 +80,12 @@ class InMemoryTaskRepository implements TaskRepositoryInterface
         unset($this->tasks[$index]);
     }
 
-    private function getIndex(UUID $id)
+    /**
+     * @param $id
+     * @return false|int|string
+     */
+    private function getIndex(string $id)
     {
-        return array_search((string) $id, array_column($this->tasks, 'id'));
+        return array_search($id, array_column($this->tasks, 'id'));
     }
 }

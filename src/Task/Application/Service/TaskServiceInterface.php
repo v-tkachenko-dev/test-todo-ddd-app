@@ -18,6 +18,12 @@ interface TaskServiceInterface
      */
     public function getById(UUID $id): Task;
 
+    /**
+     * @param array $data
+     * @return Task
+     * @throws NotFoundException
+
+     */
     public function create(array $data): Task;
     public function update(UUID $id, $data): Task;
     public function delete(UUID $id): void;
